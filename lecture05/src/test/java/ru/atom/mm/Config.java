@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import ru.atom.mm.service.ConnectionProducer;
 import ru.atom.mm.service.ConnectionQueue;
 import ru.atom.mm.service.GameRepository;
+import ru.atom.mm.service.MatchMaker;
 
 @TestConfiguration
 public class Config {
@@ -21,5 +22,10 @@ public class Config {
     @Bean
     public GameRepository gameRepository() {
         return new GameRepository();
+    }
+
+    @Bean
+    public MatchMaker matchMaker() {
+        return new MatchMaker();
     }
 }

@@ -3,6 +3,7 @@ package ru.atom.mm.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import ru.atom.mm.model.Connection;
 import ru.atom.mm.model.GameSession;
@@ -26,6 +27,11 @@ public class MatchMaker implements Runnable {
     @Autowired
     private GameRepository gameRepository;
 
+    private List<Connection> candidates;
+
+    public List<Connection> getCandidates() {
+        return candidates;
+    }
 
     @PostConstruct
     public void startThread() {
@@ -35,7 +41,7 @@ public class MatchMaker implements Runnable {
     @Override
     public void run() {
         log.info("Started");
-        List<Connection> candidates = new ArrayList<>(GameSession.PLAYERS_IN_GAME);
+        candidates = new ArrayList<>(GameSession.PLAYERS_IN_GAME);
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 candidates.add(
