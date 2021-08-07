@@ -17,9 +17,13 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.10.0'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.5.2'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.2'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.5.2'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.5.2'
+    // https://mvnrepository.com/artifact/com.linkedin.urls/url-detector
+    implementation group: 'com.linkedin.urls', name: 'url-detector', version: '0.1.17'
     // https://mvnrepository.com/artifact/junit/junit
     testCompile group: 'junit', name: 'junit', version: '4.4'
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test

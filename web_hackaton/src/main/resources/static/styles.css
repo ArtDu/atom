@@ -42,3 +42,14 @@
     height: 30px; /* Height of the footer */
     background: #336666;
 }
+
+.parent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.users {
+    font-family: "Courier New", Courier, monospace;
+    padding: 7px;
+    overflow: auto;
+}

@@ -2,14 +2,17 @@ package ru.atom.chat;
 
 import okhttp3.Response;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
-@Ignore
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@RunWith(SpringRunner.class)
 public class ChatClientTest {
     private static final Logger log = LoggerFactory.getLogger(ChatClientTest.class);
 
@@ -33,7 +36,7 @@ public class ChatClientTest {
         Assert.assertEquals(200, response.code());
     }
 
-    @Test//TODO FIX
+    @Test
     public void viewOnline() throws IOException {
         Response response = ChatClient.viewOnline();
         log.info("[" + response + "]");
@@ -41,8 +44,9 @@ public class ChatClientTest {
         Assert.assertEquals(200, response.code());
     }
 
-    @Test//TODO FIX
+    @Test
     public void say() throws IOException {
+        login();
         Response response = ChatClient.say(MY_NAME_IN_CHAT, MY_MESSAGE_TO_CHAT);
         log.info("[" + response + "]");
         log.info(response.body().string());
