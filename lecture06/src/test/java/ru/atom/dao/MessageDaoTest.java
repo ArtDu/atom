@@ -1,7 +1,6 @@
 package ru.atom.dao;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import ru.atom.model.Message;
 import ru.atom.model.User;
@@ -14,7 +13,6 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by sergey on 3/25/17.
  */
-@Ignore
 public class MessageDaoTest {
     private MessageDao messageDao;
     private String msg ;
@@ -27,7 +25,7 @@ public class MessageDaoTest {
         msg = "Hello World " + new Random().nextInt(999999);
         messagesBeforeTest = messageDao.getAll().size();
         message = new Message()
-                .setUser(new User().setId(7))
+                .setUser(new User().setId(1))
                 .setValue(msg);
 
         messageDao.insert(message);
