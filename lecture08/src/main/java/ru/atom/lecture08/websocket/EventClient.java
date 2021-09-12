@@ -4,6 +4,9 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
+import ru.atom.lecture08.websocket.message.Message;
+import ru.atom.lecture08.websocket.message.Topic;
+import ru.atom.lecture08.websocket.util.JsonHelper;
 
 import java.io.IOException;
 
@@ -16,13 +19,16 @@ public class EventClient {
         WebSocketSession session = null;
         try {
             // The socket that receives events
-            EventHandler socket = new EventHandler();
+            ClientEventHandler socket = new ClientEventHandler();
             // Make a handshake with server
             ListenableFuture<WebSocketSession> fut = client.doHandshake(socket, uri);
             // Wait for Connect
             session = fut.get();
             // Send a message
             session.sendMessage(new TextMessage("Hello"));
+            // send a Json message
+            String message = JsonHelper.toJson(new Message(Topic.HELLO, JsonHelper.toJson("Artyom")));
+            session.sendMessage(new TextMessage(message));
             // Close session
             session.close();
 

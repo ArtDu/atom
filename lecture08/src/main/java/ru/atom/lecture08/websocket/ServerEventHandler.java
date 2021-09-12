@@ -8,23 +8,24 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 @Component
-public class EventHandler extends TextWebSocketHandler implements WebSocketHandler {
+public class ServerEventHandler extends TextWebSocketHandler implements WebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         super.afterConnectionEstablished(session);
-        System.out.println("Socket Connected: " + session);
+        System.out.println("Server socket Connected: " + session);
     }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        session.sendMessage(new TextMessage("{ \"history\": [ \"ololo\", \"2\" ] }"));
-        System.out.println("Received " + message.toString());
+        System.out.println("Server received " + message.toString());
+        session.sendMessage(new TextMessage("Message recieved"));
+        System.out.println("Send message to client: \"Message recieved\"");
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
-        System.out.println("Socket Closed: [" + closeStatus.getCode() + "] " + closeStatus.getReason());
+        System.out.println("Server socket Closed: [" + closeStatus.getCode() + "] " + closeStatus.getReason());
         super.afterConnectionClosed(session, closeStatus);
     }
 
